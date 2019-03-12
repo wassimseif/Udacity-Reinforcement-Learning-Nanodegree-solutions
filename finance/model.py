@@ -1,13 +1,13 @@
 import numpy as np
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
+#%%
 def hidden_init(layer):
     fan_in = layer.weight.data.size()[0]
     lim = 1. / np.sqrt(fan_in)
     return (-lim, lim)
+#%%
 
 class Actor(nn.Module):
     """Actor (Policy) Model."""
@@ -72,3 +72,4 @@ class Critic(nn.Module):
         x = torch.cat((xs, action), dim=1)
         x = F.relu(self.fc2(x))
         return self.fc3(x)
+#%%
